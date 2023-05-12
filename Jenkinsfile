@@ -98,6 +98,9 @@ pipeline {
         steps {
          sh "helm upgrade --install --force vprofile-stack helm/vprofilecharts  --set appimage=${registry}:V${BUILD_NUMBER}"
         }
+        timeout(time: 1, unit: 'MINUTES') {
+                             abortPipeline: true
+                        }
         }
     }
 }
